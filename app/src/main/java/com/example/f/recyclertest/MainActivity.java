@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         final MyRecyclerView recyclerView = (MyRecyclerView) findViewById(R.id.rc_list);
         LinearLayoutManager layoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(layoutManager);
-//        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL));
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL));
         recyclerView.setFocusDrawableId(R.mipmap.liebiao_focus);
         ArrayList<String> datas = new ArrayList<>();
         for (int i = 0; i <= 50; i++) {
@@ -88,21 +89,14 @@ public class MainActivity extends AppCompatActivity {
     class MyHoder extends RecyclerView.ViewHolder {
 
         TextView tvData;
-        View viewLine;
 
         public MyHoder(View itemView) {
             super(itemView);
             tvData = (TextView) itemView.findViewById(R.id.tv_data);
-            viewLine = itemView.findViewById(R.id.view_line);
 
-            ViewGroup.LayoutParams layoutParams1 = viewLine.getLayoutParams();
-            layoutParams1.width = 20;
-            viewLine.setLayoutParams(layoutParams1);
-
-//            ViewGroup.LayoutParams layoutParams = itemView.getLayoutParams();
-//            layoutParams.width = (int) (Math.random() * 200 + 100);
-//            layoutParams.height = 200;
-//            itemView.setLayoutParams(layoutParams);
+            ViewGroup.LayoutParams layoutParams = itemView.getLayoutParams();
+            layoutParams.width = (int) (Math.random() * 200 + 100);
+            itemView.setLayoutParams(layoutParams);
         }
     }
 }
