@@ -1,0 +1,2 @@
+# FocusedMoveRecyclerView
+RecyclerView的item的焦点变化时背景跟着移动
