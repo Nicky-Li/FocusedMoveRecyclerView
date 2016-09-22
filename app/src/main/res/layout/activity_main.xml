@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.f.recyclertest.MainActivity">
+
+
+    <!--<com.example.f.recyclertest.ScrollerLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+        <com.example.f.recyclertest.MyRecyclerView
+            android:id="@+id/rc_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:background="@android:color/black"-->
+            <!--android:layout_height="match_parent"/>-->
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:background="@android:color/darker_gray"-->
+            <!--android:layout_height="match_parent"/>-->
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:background="@android:color/holo_blue_bright"-->
+            <!--android:layout_height="match_parent"/>-->
+    <!--</com.example.f.recyclertest.ScrollerLayout>-->
+
+</RelativeLayout>
