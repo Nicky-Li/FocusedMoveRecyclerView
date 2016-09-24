@@ -34,7 +34,8 @@ public class MyRecyclerView extends RecyclerView implements BaseRecyclerAdapter.
     private View curFocusedView;
     //recyclerView在滑动的时候需重置scroller的终点位置
     private boolean isRecyclerScrolling;
-
+    //焦点View在上层还是下层，默认下层
+    private boolean isFocusedFront;
     //焦点大小比每一项大多少
     private int padding = 2;
 
@@ -76,12 +77,31 @@ public class MyRecyclerView extends RecyclerView implements BaseRecyclerAdapter.
     }
 
     @Override
-    public void onDraw(Canvas c) {
-        super.onDraw(c);
+    public void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (isFocusedFront) {
+            return;
+        }
+        drawFocused(canvas);
+    }
+
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (!isFocusedFront) {
+            return;
+        }
+
+        drawFocused(canvas);
+    }
+
+
+
+    private void drawFocused(Canvas canvas) {
         if (curFocusedViewRectF == null || focusedBitmap == null) {
             return;
         }
-        c.drawBitmap(focusedBitmap, focusedBitmapRect, curFocusedViewRectF, null);
+        canvas.drawBitmap(focusedBitmap, focusedBitmapRect, curFocusedViewRectF, null);
     }
 
     @Override
@@ -159,6 +179,14 @@ public class MyRecyclerView extends RecyclerView implements BaseRecyclerAdapter.
         options.inPreferredConfig = Bitmap.Config.RGB_565;
         focusedBitmap = BitmapFactory.decodeStream(inputStream, null, options);
         focusedBitmapRect = new Rect(0, 0, focusedBitmap.getWidth(), focusedBitmap.getHeight());
+    }
+
+    public boolean isFocusedFront() {
+        return isFocusedFront;
+    }
+
+    public void setFocusedFront(boolean focusedFront) {
+        isFocusedFront = focusedFront;
     }
 
     public int getPadding() {
